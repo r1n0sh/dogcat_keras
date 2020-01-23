@@ -21,7 +21,7 @@ class DogCat(object):
             # classifier
             Flatten(),
             Dense(64, activation='relu'),
-            Dropout(0.25),
+            Dropout(0.5),
             Dense(2, activation='softmax'),
         ])
         self.optim = optimizers.SGD(lr=1e-3, decay=1e-6, momentum=0.9, nesterov=True)
@@ -79,7 +79,7 @@ def train(dir: str, im_size: tuple, pretrained_checkpoint=None, **kwargs):
         class_mode='binary')
     print(train_generator.class_indices)
     model = DogCat(im_size)
-    if pretrained_checkpoint:
+    if pretrained_checkpoint is not None:
         assert isinstance(pretrained_checkpoint, str)
         model.net.load_weights(pretrained_checkpoint)
     model._fit(train_generator, **kwargs)
