@@ -81,12 +81,7 @@ def down_fr_url(urls: list, save_dir: str='', unzip: bool=False):
                 down_size_in_mb = total_size_in_mb
             speed = (count * block_size) / (time.time() - start_time + 1e-3) / 1024
             time_left = int((total_size_in_mb - down_size_in_mb) * 1024 /(speed + 1e-3))
-            print('{} {}/{} MB {} {}\testim. time left:
-{}'.format(down_bar,str(down_size_in_mb).rjust(len(str(total_size_in_mb))),
-                total_size_in_mb, ('(%2.1f%%)'%(percent *
-100)).rjust(8),
-                indicator(speed), time_left),
-            flush=True, end='\r')
+            print('{} {}/{} MB {} {}\testim. time left:{}'.format(down_bar,str(down_size_in_mb).rjust(len(str(total_size_in_mb))),total_size_in_mb, ('(%2.1f%%)'%(percent *100)).rjust(8),indicator(speed), time_left),flush=True, end='\r')
             
     for url in urls:
         try:
